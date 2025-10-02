@@ -1,0 +1,22 @@
+{
+    "214823016264237056": {
+        "guc": 92,
+        "para": 3682,
+        "seviye": 4,
+        "xp": 52,
+        "train_sayisi": 7,
+        "is_sayisi": 7,
+        "max_can": 150,
+        "mevcut_can": 162,
+        "zirh": 0,
+        "envanter": [],
+        "giyili": {
+            "silah": null,
+            "kask": null,
+            "gogus": null,
+            "pantolon": null,
+            "bot": "dw6"
+        },
+        "mevcut_zirh": 18
+    }
+}
