@@ -1,7 +1,7 @@
 # Discord Bot .gitignore
 
 # Sensitive configuration files
-config.json
+# config.json - Replit için gerekli
 dm_log.json
 
 # Python
