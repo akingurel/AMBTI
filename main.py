@@ -761,17 +761,27 @@ Toplam Güç: 160 | Toplam Can: 290
 ✨ Daha fazla güç ve prestij için marketleri takip et, savaşlara katıl, bossları alt et ve efsanevi itemları topla!
         """
     )
-    if ctx.author.id in ADMIN_IDS:
-        yardim_mesaj += (
-            "\n**🔒 Admin Komutları:**\n"
-            "`!duyuru <mesaj>` - Genel duyuru atar (mesajınız görünmez).\n"
-            "`!duyuru_sil <mesaj_id>` - Belirtilen duyuru mesajını siler.\n"
-            "`!bossbelir` - Sunucuda bossu manuel olarak ortaya çıkarır.\n"
-            "`!temizle <miktar>` - DM'de sana gönderilmiş mesajları siler.\n"
-        )
+    # Admin komutlarını herkese açık yardım mesajına ekleme.
+    # Sadece komutu yazan kişiye (ve adminse) DM olarak gönder.
+    admin_yardim_mesaji = (
+        "\n**🔒 Admin Komutları:**\n"
+        "`!duyuru <mesaj>` - Genel duyuru atar (mesajınız görünmez).\n"
+        "`!duyuru_sil <mesaj_id>` - Belirtilen duyuru mesajını siler.\n"
+        "`!bossbelir` - Sunucuda bossu manuel olarak ortaya çıkarır.\n"
+        "`!temizle <miktar>` - DM'de sana gönderilmiş mesajları siler.\n"
+    )
     # Mesajı 2000 karakterlik parçalara böl ve sırayla gönder
     for parca in [yardim_mesaj[i:i+2000] for i in range(0, len(yardim_mesaj), 2000)]:
         await ctx.send(parca)
+
+    # Admin komutlarını sadece komutu yazan kişiye özelden gönder (eğer adminse)
+    if ctx.author.id in ADMIN_IDS:
+        try:
+            for parca in [admin_yardim_mesaji[i:i+2000] for i in range(0, len(admin_yardim_mesaji), 2000)]:
+                await ctx.author.send(parca)
+        except Exception:
+            # DM kapalıysa sessizce geç
+            pass
 
 # Market ürünleri
 MARKET = {
